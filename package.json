@@ -10,7 +10,8 @@
     "db:studio": "npx drizzle-kit studio",
     "d:up": "docker compose up -d",
     "d:down": "docker compose down",
-    "server:dev": "npx nx serve server"
+    "server:dev": "npx nx serve server",
+    "client:dev": "npx nx serve client"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,8 @@
     "@fastify/autoload": "~5.8.0",
     "@fastify/sensible": "~5.5.0",
     "@fastify/websocket": "^8.3.1",
+    "@trpc/client": "^10.45.1",
+    "@trpc/next": "^10.45.1",
     "@trpc/server": "^10.45.1",
     "axios": "^1.6.0",
     "drizzle-kit": "^0.20.14",
@@ -34,10 +37,12 @@
     "postgres": "^3.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "superjson": "1.13.3",
     "tslib": "^2.3.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
     "@nx-extend/shadcn-ui": "^0.2.2",
     "@nx/cypress": "18.0.4",
     "@nx/esbuild": "18.0.4",
@@ -65,6 +70,8 @@
     "@types/react-dom": "18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/ui": "^1.0.4",
     "babel-jest": "^29.4.1",
     "cypress": "^13.0.0",
     "esbuild": "^0.19.2",
@@ -79,6 +86,7 @@
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
+    "jsdom": "~22.1.0",
     "nx": "18.0.4",
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",
@@ -86,6 +94,9 @@
     "ts-node": "10.9.1",
     "typescript": "~5.3.2",
     "url-loader": "^4.1.1",
+    "vite": "~5.0.0",
+    "vite-plugin-dts": "~2.3.0",
+    "vitest": "^1.0.4",
     "webpack-cli": "^5.1.4"
   }
 }
