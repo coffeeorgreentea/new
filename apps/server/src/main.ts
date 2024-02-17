@@ -6,6 +6,7 @@ import {
 import { createTRPCContext as createContext } from '@slated/api';
 import { appRouter, type AppRouter } from '@slated/api';
 import { clerkPlugin } from '@clerk/fastify';
+import ws from '@fastify/websocket';
 
 const host = process.env.SERVER_HOST ?? 'localhost';
 const port = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 7100;
@@ -17,6 +18,8 @@ const server = Fastify({
 });
 
 server.register(clerkPlugin);
+
+server.register(ws);
 
 server.register(fastifyTRPCPlugin, {
   prefix: '/trpc',
