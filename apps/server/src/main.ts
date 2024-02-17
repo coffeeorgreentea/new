@@ -22,6 +22,7 @@ server.register(clerkPlugin);
 server.register(ws);
 
 server.register(fastifyTRPCPlugin, {
+  useWSS: true,
   prefix: '/trpc',
   trpcOptions: {
     router: appRouter,
@@ -29,6 +30,7 @@ server.register(fastifyTRPCPlugin, {
     onError({ path, error }) {
       console.error(`Error in tRPC handler on path '${path}':`, error);
     },
+    
   } satisfies FastifyTRPCPluginOptions<AppRouter>['trpcOptions'],
 });
 
