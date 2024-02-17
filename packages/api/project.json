@@ -1,0 +1,20 @@
+{
+  "name": "@slated/api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/api/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/api",
+        "tsConfig": "packages/api/tsconfig.lib.json",
+        "packageJson": "packages/api/package.json",
+        "main": "packages/api/src/index.ts",
+        "assets": ["packages/api/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
