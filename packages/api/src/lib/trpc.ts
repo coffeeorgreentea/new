@@ -3,6 +3,7 @@ import type { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify'
 import { ZodError } from 'zod';
 import { db } from 'db';
 import { getAuth } from '@clerk/fastify';
+import superjson from 'superjson';
 
 export const createTRPCContext = async (opts: CreateFastifyContextOptions) => {
   return {
@@ -13,6 +14,7 @@ export const createTRPCContext = async (opts: CreateFastifyContextOptions) => {
 };
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
+  transformer: superjson,
   errorFormatter: ({ shape, error }) => ({
     ...shape,
     data: {
