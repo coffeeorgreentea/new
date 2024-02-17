@@ -13,5 +13,14 @@ const posts: PostInsert[] = [
 ];
 
 (async () => {
-  await db.insert(postsTable).values(posts);
+  console.info('Seeding databse...');
+  try {
+    await db.insert(postsTable).values(posts);
+    console.info('Database seeded.');
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 })();
+
+process.exit(0);
