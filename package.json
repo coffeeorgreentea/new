@@ -13,8 +13,10 @@
   },
   "private": true,
   "dependencies": {
+    "@clerk/fastify": "^0.6.34",
     "@fastify/autoload": "~5.7.1",
     "@fastify/sensible": "~5.2.0",
+    "@trpc/server": "^10.45.1",
     "axios": "^1.6.0",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.3",
