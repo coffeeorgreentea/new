@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1708153612439,
+      "tag": "0000_open_zuras",
+      "breakpoints": true
+    }
+  ]
+}
