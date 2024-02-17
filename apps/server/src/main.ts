@@ -3,8 +3,8 @@ import {
   fastifyTRPCPlugin,
   FastifyTRPCPluginOptions,
 } from '@trpc/server/adapters/fastify';
-import { createTRPCContext as createContext } from '@slated/api';
-import { appRouter, type AppRouter } from '@slated/api';
+import { createTRPCContext } from 'api';
+import { appRouter, type AppRouter } from 'api';
 import { clerkPlugin } from '@clerk/fastify';
 import ws from '@fastify/websocket';
 
@@ -26,7 +26,7 @@ server.register(fastifyTRPCPlugin, {
   prefix: '/trpc',
   trpcOptions: {
     router: appRouter,
-    createContext,
+    createContext: createTRPCContext,
     onError({ path, error }) {
       console.error(`Error in tRPC handler on path '${path}':`, error);
     },
