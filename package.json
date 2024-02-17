@@ -6,7 +6,7 @@
     "db:generate": "drizzle-kit generate:pg",
     "db:up": "drizzle-kit up:pg",
     "db:push": "drizzle-kit push:pg",
-    "db:seed": "npx nx run @racks/db:seed",
+    "db:seed": "npx nx run @slated/db:seed",
     "db:studio": "npx drizzle-kit studio",
     "d:up": "docker compose up -d",
     "d:down": "docker compose down"
