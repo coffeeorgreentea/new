@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@slated/api": ["packages/api/src/index.ts"],
-      "@slated/db": ["packages/db/src/index.ts"]
+      "api": ["packages/api/src/index.ts"],
+      "db": ["packages/db/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
