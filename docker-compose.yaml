@@ -1,0 +1,36 @@
+version: '3.4'
+services:
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - '7020:6379'
+  postgres:
+    restart: always
+    image: postgres:latest
+    hostname: slated_db
+    environment:
+      POSTGRES_DB: slated
+      POSTGRES_USER: slated
+      POSTGRES_PASSWORD: slated_default_pw
+    ports:
+      - '7030:5432'
+  s3:
+    image: minio/minio:latest
+    command: server /data
+    environment:
+      MINIO_ACCESS_KEY: minioaccesskey
+      MINIO_SECRET_KEY: miniosecretkey
+    ports:
+      - '7040:9000'
+    volumes:
+      - s3-data:/data
+volumes:
+  cache:
+    driver: local
+  s3-data:
+    driver: local
+
+networks:
+  default:
+    name: slated-network
