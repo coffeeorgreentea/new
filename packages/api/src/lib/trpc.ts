@@ -6,10 +6,11 @@ import { getAuth } from '@clerk/fastify';
 import superjson from 'superjson';
 
 export const createTRPCContext = async (opts: CreateFastifyContextOptions) => {
+  const { req } = opts;
   return {
-    req: opts.req,
+    req,
     db,
-    auth: getAuth(opts.req),
+    auth: getAuth(req),
   };
 };
 
