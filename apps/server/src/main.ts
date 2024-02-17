@@ -1,23 +1,39 @@
 import Fastify from 'fastify';
-import { app } from './app/app';
+import {
+  fastifyTRPCPlugin,
+  FastifyTRPCPluginOptions,
+} from '@trpc/server/adapters/fastify';
+import { createTRPCContext as createContext } from '@slated/api';
+import { appRouter, type AppRouter } from '@slated/api';
+import { clerkPlugin } from '@clerk/fastify';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const host = process.env.SERVER_HOST ?? 'localhost';
+const port = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 7100;
 
 // Instantiate Fastify with some config
 const server = Fastify({
-  logger: true,
+  logger: process.env.NODE_ENV !== 'production',
+  maxParamLength: 5000,
 });
 
-// Register your application as a normal plugin.
-server.register(app);
+server.register(clerkPlugin);
 
-// Start listening.
-server.listen({ port, host }, (err) => {
-  if (err) {
+server.register(fastifyTRPCPlugin, {
+  prefix: '/trpc',
+  trpcOptions: {
+    router: appRouter,
+    createContext,
+    onError({ path, error }) {
+      console.error(`Error in tRPC handler on path '${path}':`, error);
+    },
+  } satisfies FastifyTRPCPluginOptions<AppRouter>['trpcOptions'],
+});
+
+(async () => {
+  try {
+    await server.listen({ port, host });
+  } catch (err) {
     server.log.error(err);
     process.exit(1);
-  } else {
-    console.log(`[ ready ] http://${host}:${port}`);
   }
-});
+})();
