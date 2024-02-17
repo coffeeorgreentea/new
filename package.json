@@ -9,7 +9,8 @@
     "db:seed": "npx nx run @slated/db:seed",
     "db:studio": "npx drizzle-kit studio",
     "d:up": "docker compose up -d",
-    "d:down": "docker compose down"
+    "d:down": "docker compose down",
+    "server:dev": "npx nx serve server"
   },
   "private": true,
   "dependencies": {

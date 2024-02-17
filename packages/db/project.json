@@ -1,5 +1,5 @@
 {
-  "name": "@slated/db",
+  "name": "db",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/db/src",
   "projectType": "library",
@@ -14,9 +14,6 @@
         "main": "packages/db/src/index.ts",
         "assets": ["packages/db/*.md"]
       }
-    },
-    "seed": {
-      "command": "ts-node ./packages/db/src/lib/seed.ts"
     }
   },
   "tags": []

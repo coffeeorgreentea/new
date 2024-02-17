@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: '@slated/db',
+  displayName: 'db',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
