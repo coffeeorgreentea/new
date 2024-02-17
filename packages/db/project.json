@@ -1,0 +1,20 @@
+{
+  "name": "@slated/db",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/db/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/db",
+        "tsConfig": "packages/db/tsconfig.lib.json",
+        "packageJson": "packages/db/package.json",
+        "main": "packages/db/src/index.ts",
+        "assets": ["packages/db/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
