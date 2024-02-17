@@ -2,7 +2,15 @@
   "name": "@slated/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "db:generate": "drizzle-kit generate:pg",
+    "db:up": "drizzle-kit up:pg",
+    "db:push": "drizzle-kit push:pg",
+    "db:seed": "npx nx run @racks/db:seed",
+    "db:studio": "npx drizzle-kit studio",
+    "d:up": "docker compose up -d",
+    "d:down": "docker compose down"
+  },
   "private": true,
   "dependencies": {
     "@fastify/autoload": "~5.7.1",
