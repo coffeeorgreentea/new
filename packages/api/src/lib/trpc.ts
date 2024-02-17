@@ -1,8 +1,7 @@
 import { initTRPC, TRPCError } from '@trpc/server';
 import type { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
-import superjson from 'superjson';
 import { ZodError } from 'zod';
-import { db } from '@slated/db';
+import { db } from 'db';
 import { getAuth } from '@clerk/fastify';
 
 export const createTRPCContext = async (opts: CreateFastifyContextOptions) => {
@@ -14,7 +13,6 @@ export const createTRPCContext = async (opts: CreateFastifyContextOptions) => {
 };
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
-  transformer: superjson,
   errorFormatter: ({ shape, error }) => ({
     ...shape,
     data: {
