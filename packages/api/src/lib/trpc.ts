@@ -4,16 +4,27 @@ import { ZodError } from 'zod';
 import { db } from 'db';
 import { getAuth } from '@clerk/fastify';
 import superjson from 'superjson';
+import { parse } from 'cookie';
 
 export const createTRPCContext = async (opts: CreateFastifyContextOptions) => {
   const { req } = opts;
+  // // get __session cookie from headers
+  // const cookies = parse(req.headers.cookie || '');
+  // const session = cookies['__session'];
+  // console.log('session', session);
+  // // put the session in the Authorization header
+  // req.headers.authorization = `Bearer ${session}`;
+
+  const auth = getAuth(req);
+
+  console.log('auth', auth);
+
   return {
     req,
     db,
-    auth: getAuth(req),
+    auth,
   };
 };
-
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
   errorFormatter: ({ shape, error }) => ({

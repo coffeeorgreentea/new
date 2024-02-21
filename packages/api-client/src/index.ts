@@ -3,9 +3,24 @@ import { createTRPCNext } from '@trpc/next';
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server';
 import superjson from 'superjson';
 import { type AppRouter } from 'api';
+import { auth } from '@clerk/nextjs';
+import Clerk from '@clerk/clerk-js';
+
+export async function getAuthToken() {
+  const isServer = typeof window === 'undefined';
+
+  if (isServer) {
+    const { getToken } = auth();
+    return await getToken();
+  }
+
+  const clerk = new Clerk(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!);
+  await clerk.load();
+  return await clerk.session?.getToken();
+}
 
 export const api = createTRPCNext<AppRouter>({
-  config() {
+  config({ ctx }) {
     return {
       /**
        * Transformer used for data de-serialization from the server.
@@ -27,6 +42,21 @@ export const api = createTRPCNext<AppRouter>({
         }),
         httpBatchLink({
           url: `${process.env.NEXT_PUBLIC_SERVER_URL}/trpc`,
+          async fetch(url, options) {
+            const clerk = new Clerk(
+              process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string
+            );
+
+            const token = await getAuthToken()
+            return fetch(url, {
+              ...options,
+              credentials: 'include',
+              headers: {
+                ...options?.headers,
+                Authorization: `Bearer ${token}`,
+              },
+            });
+          },
         }),
       ],
     };

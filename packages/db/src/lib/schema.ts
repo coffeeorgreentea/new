@@ -1,6 +1,6 @@
-import {  text, timestamp, pgTable, uuid } from 'drizzle-orm/pg-core';
+import {  text, timestamp, pgTable, uuid, PgColumn } from 'drizzle-orm/pg-core';
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+import { createInsertSchema, createSelectSchema,  } from 'drizzle-zod';
 
 export const postsTable = pgTable('posts', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -12,5 +12,5 @@ export const postsTable = pgTable('posts', {
 
 export type PostSelect = InferSelectModel<typeof postsTable>;
 export type PostInsert = InferInsertModel<typeof postsTable>;
-export const insertPostSchema = createInsertSchema(postsTable);
 export const selectPostSchema = createSelectSchema(postsTable);
+export const insertPostSchema = createInsertSchema(postsTable)
