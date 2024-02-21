@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cl-userButtonPopoverFooter {
+  display: none;
+}
+
+
+/* hide 4th div under div under the class */
+.cl-signIn-root div:nth-child(4) {
+  display: none;
+}
+
+.cl-signUp-root div:nth-child(4) {
+    display: none;
+  }

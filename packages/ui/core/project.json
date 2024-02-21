@@ -1,0 +1,29 @@
+{
+  "name": "ui/core",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/ui/core/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "add": {
+      "executor": "@nx-extend/shadcn-ui:add"
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/packages/ui",
+        "main": ""
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    }
+  }
+}

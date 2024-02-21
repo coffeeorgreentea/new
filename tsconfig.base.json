@@ -10,15 +10,59 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "api-client": ["packages/api-client/src/index.ts"],
-      "api": ["packages/api/src/index.ts"],
-      "db": ["packages/db/src/index.ts"]
+      "api": [
+        "packages/api/src/index.ts"
+      ],
+      "api-client": [
+        "packages/api-client/src/index.ts"
+      ],
+      "db": [
+        "packages/db/src/index.ts"
+      ],
+      "ui/core": [
+        "packages/ui/core/src/index.ts"
+      ],
+      "ui/core/*": [
+        "packages/ui/core/src/*"
+      ],
+      "ui/examples": [
+        "packages/ui/examples/src/index.ts"
+      ],
+      "ui/examples/*": [
+        "packages/ui/examples/src/*"
+      ],
+      "ui/hooks": [
+        "packages/ui/hooks/src/index.ts"
+      ],
+      "ui/hooks/*": [
+        "packages/ui/hooks/src/*"
+      ],
+      "ui/utils": [
+        "packages/ui/utils/src/index.ts"
+      ],
+      "ui/utils/*": [
+        "packages/ui/utils/src/*"
+      ],
+      "validators": [
+        "packages/validators/src/index.ts"
+      ],
+      "validators/*": [
+        "packages/validators/src/*"
+      ],
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
